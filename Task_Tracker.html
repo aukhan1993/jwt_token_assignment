@@ -19,70 +19,99 @@
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
+
   <!-- Custom styles for this template -->
   <link href="signin.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body class="text-center flex-column">
 
   <div class="row" style="min-width: 35%; width: 40%;">
     <div>
-      <form action="" class="form-border mb-3" method="POST">
-        <div class="row">
+      <div class="row form-border mb-3">
+        <div class="col">
+          <h1 class="h3 mb-4 text-start">Task Tracker</h1>
+        </div>
+        <div class="col text-end">
+          <input class="btn btn-danger" style="max-width: 40%;" value="Add" id="AddButton">
+        </div>
+
+        <form action="" class="" style="display: none" id="TaskTrackerForm" method="POST">
+          <!-- <div class="row">
           <div class="col">
             <h1 class="h3 mb-4 text-start">Task Tracker</h1>
           </div>
           <div class="col text-end">
             <button class="btn btn-danger" type="submit">Close</button>
           </div>
-        </div>
+        </div> -->
 
-        <div class="text-start">
-          <label>Task</label>
-          <input type="text" class="form-control mb-3" name="email" id="floatingInput" placeholder="Add Task">
-        </div>
-        <div class="text-start">
-          <label>Day &amp; Time</label>
-          <input type="datetime" name="password" class="form-control mb-3" id="floatingPassword" placeholder="Add Day & Time">
-        </div>
+          <div class="text-start">
+            <label>Task</label>
+            <input type="text" class="form-control mb-3" name="email" id="floatingInput" placeholder="Add Task">
+          </div>
+          <div class="text-start">
+            <label>Day &amp; Time</label>
+            <input type="datetime" name="password" class="form-control mb-3" id="floatingPassword"
+              placeholder="Add Day & Time">
+          </div>
 
-        <div class="checkbox mb-3" style="text-align: initial;">
-          <label class="me-5">
-            Set Reminder
-          </label>
-          <input class="ms-5 checkbox_size" type="checkbox" value="reminder">
-        </div>
-        <button class="w-100 btn btn-dark" type="submit">Save Task</button>
-        <!-- <p class="mt-5 mb-3 text-muted"></p> -->
-        <!-- List of tasks to be shown -->
-        <div class="list-group mt-5">
-          <div class=" mb-2 green-border text-start list-group-item flex-column align-items-start list-group-item-secondary">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Doctors Appointment </h5>
-              <a class="fa fa-close" style="color:rgb(201, 14, 14)" href="#"></a>
-            </div>
-            <div class="text-start" style="font-weight: 500;">Feb 5th at 2:30pm</div>
+          <div class="checkbox mb-3" style="text-align: initial;">
+            <label class="me-5">
+              Set Reminder
+            </label>
+            <input class="ms-5 checkbox_size" type="checkbox" value="reminder">
           </div>
-          <div class=" mb-2 text-start green-border list-group-item flex-column align-items-start list-group-item-secondary">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Meeting at School</h5>
-              <a class="fa fa-close" style="color:rgb(201, 14, 14)" href="#"></a>
+          <button class="w-100 btn btn-dark" type="submit">Save Task</button>
+          <!-- <p class="mt-5 mb-3 text-muted"></p> -->
+          <!-- List of tasks to be shown -->
+          <div class="list-group mt-5">
+            <div
+              class=" mb-2 green-border text-start list-group-item flex-column align-items-start list-group-item-secondary">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Doctors Appointment </h5>
+                <a class="fa fa-close" style="color:rgb(201, 14, 14)" href="#"></a>
+              </div>
+              <div class="text-start" style="font-weight: 500;">Feb 5th at 2:30pm</div>
             </div>
-            <div class="text-start" style="font-weight: 500;">Feb 5th at 2:30pm</div>
-          </div>
-          <div class=" mb-2 text-start list-group-item flex-column align-items-start list-group-item-secondary">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Food Shopping</h5>
-              <a class="fa fa-close" style="color:rgb(201, 14, 14)" href="#"></a>
+            <div
+              class=" mb-2 text-start green-border list-group-item flex-column align-items-start list-group-item-secondary">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Meeting at School</h5>
+                <a class="fa fa-close" style="color:rgb(201, 14, 14)" href="#"></a>
+              </div>
+              <div class="text-start" style="font-weight: 500;">Feb 5th at 2:30pm</div>
             </div>
-            <div class="text-start" style="font-weight: 500;">Feb 5th at 2:30pm</div>
+            <div class=" mb-2 text-start list-group-item flex-column align-items-start list-group-item-secondary">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Food Shopping</h5>
+                <a class="fa fa-close" style="color:rgb(201, 14, 14)" href="#"></a>
+              </div>
+              <div class="text-start" style="font-weight: 500;">Feb 5th at 2:30pm</div>
+            </div>
           </div>
-        </div>
-      </form>
-
+        </form>
+      </div>
     </div>
   </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#AddButton").click(function () {
+        if ($("#TaskTrackerForm").is(":visible")) {
+          $("#AddButton").prop('value', 'Add');
+          $("#TaskTrackerForm").toggle();
+        } else {
+          $("#AddButton").prop('value', 'Close');
+          $("#TaskTrackerForm").toggle();
+        }
+        //$("#AddButton").prop('value', 'Close');
+        
+      });
+    });
+  </script>
 
 </body>
 
