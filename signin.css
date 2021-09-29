@@ -11,15 +11,56 @@ body {
   background-color: #f5f5f5;
 }
 
+.list-group-item-secondary{
+  border-radius: 0px !important;
+  background: #e6e5e5;
+  border: 0px;
+}
+.green-border{
+  border-left: 4px solid green;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
 .form-signin {
   width: 50%;
   max-width: 350px;
   padding: 15px;
 }
+.checkbox_size{
+    width: 16px;
+    height: 16px;
+    vertical-align: revert;
+}
+
+.form-border{
+  padding: 5%;
+  border-color: rgb(121, 121, 121) rgb(121, 121, 121) rgb(35, 35, 143) rgb(35, 35, 143);
+  border-style: solid;
+  border-width: 2px; 
+  border-radius: 6px;
+}
 
 .card{
-    border: 2px solid limegreen;
+    border-top: 1.3px solid rgb(199, 207, 199);
+    border-right: 1.3px solid rgb(199, 207, 199);
+    border-left: 1.3px solid rgb(24, 35, 196);
+    border-bottom: 1.3px solid rgb(24, 35, 196);
     border-radius: 1remz;
+    min-width: 25rem;
 }
 
 .form-signin .checkbox {

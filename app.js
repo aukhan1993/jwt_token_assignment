@@ -5,12 +5,14 @@ const jwt = require("jsonwebtoken");
 const { json } = require("express/lib/response");
 const auth = require("./middleware/auth");
 const res = require("express/lib/response");
+const { path } = require("path");
+const req = require("express/lib/request");
 
 const app = express();
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static(__dirname))
 
 const Users = [];
 const emailList = [];
@@ -43,8 +45,20 @@ app.get('/time_now', (req, res) => {
     res.json({ "time": timeNow.toTimeString() })
 });
 
+app.get('/task_tracker', (req, res) => {
+    return res.sendFile(__dirname + "/Task_Tracker.html");
+});
+
+app.get('/sign_up', (req, res) =>{
+    return res.sendFile(__dirname + "/sign_up.html");    
+});
+
+app.get('/login', (req, res) =>{
+    return res.sendFile(__dirname + "/login.html");    
+});
+
 // Method for Sign Up request.
-app.post('/sign_up', async (req, res) => {
+app.post('/signed_up', async (req, res) => {
 
     try {
         // User Input
@@ -81,8 +95,9 @@ app.post('/sign_up', async (req, res) => {
         }
 
         Users.push(u);
-        console.log(Users)
-        res.status(201).json(u);
+        //console.log(Users)
+        //res.status(201).json(u);
+        res.redirect("/task_tracker");
 
     } catch (err) {
         console.log(err);
@@ -100,7 +115,7 @@ app.post('/sign_up', async (req, res) => {
 })
 
 // Method for Sign in request.
-app.post('/sign_in', async (req, res) => {
+app.post('/logged_in', async (req, res) => {
     try{
         const { email, password } = req.body;
         if (!(email || password)) {
@@ -121,7 +136,7 @@ app.post('/sign_in', async (req, res) => {
             
             console.log(Users[indexOf]);
             //User
-            return res.status(200).json(Users[indexOf]);
+            return res.redirect("/task_tracker");
         }
         res.status(400).send("Invalid Credentials");
     }
